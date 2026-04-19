@@ -76,14 +76,30 @@ def _build_base_layout(
     height: int = 420,
 ) -> dict:
     return {
-        "title": {"text": title, "x": 0.02},
+        "title": {"text": title, "x": 0.02, "y": 0.97, "pad": {"b": 24}},
         "xaxis": {"title": xaxis_title},
         "yaxis": {"title": yaxis_title},
         "height": height,
         "template": "plotly_white",
-        "margin": {"l": 40, "r": 30, "t": 60, "b": 40},
+        "margin": {"l": 40, "r": 30, "t": 95, "b": 40},
         "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.02, "x": 0},
         "hovermode": "x unified",
+    }
+
+
+# ============================================================
+# Export config helper
+# ============================================================
+
+def get_plot_config(filename: str = "chart") -> dict:
+    return {
+        "toImageButtonOptions": {
+            "format": "png",
+            "filename": filename,
+            "height": 1800,
+            "width": 2800,
+            "scale": 4,
+        }
     }
 
 
@@ -151,9 +167,10 @@ def plot_hourly_average_load(
     fig = go.Figure()
 
     fig.add_trace(
-        go.Bar(
+        go.Scatter(
             x=hourly_profile_df[hour_column],
             y=hourly_profile_df[avg_load_column],
+            mode="lines+markers",
             name=avg_load_label,
         )
     )
@@ -217,7 +234,7 @@ def plot_tariff_load_curve(
     )
 
     fig.update_layout(
-        title={"text": title, "x": 0.02},
+        title={"text": title, "x": 0.02, "y": 0.97, "pad": {"b": 24}},
         xaxis={"title": xaxis_title},
         yaxis={"title": yaxis_title_left},
         yaxis2={
@@ -227,7 +244,7 @@ def plot_tariff_load_curve(
         },
         height=420,
         template="plotly_white",
-        margin={"l": 40, "r": 40, "t": 60, "b": 40},
+        margin={"l": 40, "r": 40, "t": 95, "b": 40},
         legend={"orientation": "h", "yanchor": "bottom", "y": 1.02, "x": 0},
         hovermode="x unified",
     )
@@ -256,10 +273,10 @@ def plot_tariff_cost_share_pie(
     )
 
     fig.update_layout(
-        title={"text": title, "x": 0.02},
+        title={"text": title, "x": 0.02, "y": 0.97, "pad": {"b": 24}},
         height=430,
         template="plotly_white",
-        margin={"l": 30, "r": 30, "t": 60, "b": 30},
+        margin={"l": 30, "r": 30, "t": 95, "b": 30},
     )
     return fig
 
@@ -324,7 +341,7 @@ def plot_storage_operation(
     )
 
     fig.update_layout(
-        title={"text": title, "x": 0.02},
+        title={"text": title, "x": 0.02, "y": 0.97, "pad": {"b": 24}},
         xaxis={"title": xaxis_title},
         yaxis={"title": yaxis_title_left},
         yaxis2={
@@ -335,7 +352,7 @@ def plot_storage_operation(
         barmode="group",
         height=460,
         template="plotly_white",
-        margin={"l": 40, "r": 40, "t": 60, "b": 40},
+        margin={"l": 40, "r": 40, "t": 95, "b": 40},
         legend={"orientation": "h", "yanchor": "bottom", "y": 1.02, "x": 0},
         hovermode="x unified",
     )
@@ -416,32 +433,37 @@ def plot_cost_reduction_horizontal_bar(
     fig.add_trace(
         go.Bar(
             x=[original_pct],
-            y=[original_label],
+            y=[""],
             orientation="h",
             name=original_label,
             text=[f"{original_pct:.1f}%"],
             textposition="inside",
+            width=0.22,
         )
     )
 
     fig.add_trace(
         go.Bar(
             x=[optimized_pct],
-            y=[optimized_label],
+            y=[""],
             orientation="h",
             name=optimized_label,
             text=[f"{optimized_pct:.1f}%"],
             textposition="inside",
+            width=0.22,
         )
     )
 
     fig.update_layout(
-        **_build_base_layout(
-            title=title,
-            xaxis_title=xaxis_title,
-            yaxis_title="",
-            height=320,
-        )
+        title={"text": title, "x": 0.02, "y": 0.95, "pad": {"b": 0}},
+        xaxis={"title": xaxis_title},
+        yaxis={"showticklabels": False, "title": ""},
+        height=300,
+        template="plotly_white",
+        margin={"l": 40, "r": 30, "t": 40, "b": 120},
+        hovermode="x unified",
+        barmode="overlay",
+        showlegend=False,
     )
     return fig
 

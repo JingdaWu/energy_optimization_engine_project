@@ -85,90 +85,85 @@ REPORT_TEXT = {
     },
     "en": {
         "na": "N/A",
-        "payback_not_achievable": "Not achievable under current assumptions",
+        "payback_not_achievable": "Positive financial returns cannot be achieved under the current input conditions.",
 
-        "load_extra_max_power": "Estimated maximum power is {max_power:.2f} kW.",
+        "load_extra_max_power": "The estimated maximum power demand is {max_power:.2f} kW.",
         "load_summary": (
-            "The factory load profile shows a peak load of {peak_load:.2f} kWh, "
+            "During the input load sample period, the data center or digital infrastructure records a peak load of {peak_load:.2f} kWh, "
             "an average load of {avg_load:.2f} kWh, and a minimum load of {min_load:.2f} kWh. "
-            "The peak-valley difference is {peak_valley_diff:.2f} kWh, "
-            "while the load factor is {load_factor:.2%}. "
-            "Total electricity consumption in the analyzed sample period is {total_load:.2f} kWh. "
+            "The peak-to-valley energy consumption difference is {peak_valley_diff:.2f} kWh, "
+            "and the load factor is {load_factor:.2%}. "
+            "Total electricity consumption over the input load sample period is {total_load:.2f} kWh. "
             "{extra}"
         ),
 
-        "tariff_sample_energy_cost": "Sample-period energy charge is {sample_energy_cost}. ",
-        "tariff_annual_energy_cost": "Estimated annual energy charge is {annual_energy_cost}. ",
-        "tariff_weighted_price": "Weighted average electricity price is {weighted_average_price}. ",
+        "tariff_sample_energy_cost": "TOU energy charges over the input load sample period are {sample_energy_cost}.",
+        "tariff_annual_energy_cost": "The annualized TOU energy charges are approximately {annual_energy_cost}.",
+        "tariff_weighted_price": "The weighted average electricity tariff is {weighted_average_price}.",
         "tariff_capacity_charge": (
-            "Under capacity-based charging, estimated maximum power is {max_power:.2f} kW, "
-            "contracted capacity is {contract_capacity:.2f} kW, "
-            "and power charge is {power_charge}. "
+            "Under the capacity charge method, the maximum power demand is estimated at approximately {max_power:.2f} kW, "
+            "the contracted capacity is approximately {contract_capacity:.2f} kW, "
+            "and the power charge is {power_charge}."
         ),
         "tariff_demand_charge": (
-            "Under demand-based charging, estimated maximum power is {max_power:.2f} kW, "
-            "and power charge is {power_charge}. "
+            "Under the demand charge method, the maximum power demand is estimated at approximately {max_power:.2f} kW, "
+            "and the power charge is {power_charge}."
         ),
 
         "storage_summary": (
-            "With the current rule-based strategy, the storage system charges {total_charge} "
-            "and discharges {total_discharge} during the sample period. "
-            "Estimated cycle count is {estimated_cycles:.2f}, "
-            "and utilization ratio is {utilization_ratio}. "
-            "Energy-charge saving is {energy_saving}, "
-            "power-charge saving is {power_charge_saving}, "
-            "and total saving is {total_saving}."
+            "Under the current storage system parameter settings, the energy storage system accumulates {total_charge} of charging "
+            "and {total_discharge} of discharging during the input load sample period. "
+            "The estimated cycle count is {estimated_cycles:.2f}, and the utilization ratio is {utilization_ratio}. "
+            "The financial benefit from TOU energy charge optimization is {energy_saving}, "
+            "the financial benefit from power charge reduction is {power_charge_saving}, "
+            "and the total financial benefit is {total_saving}."
         ),
 
         "finance_summary": (
-            "From an investment perspective, first-year annualized saving is approximately {annual_energy_saving}. "
-            "With an annual degradation rate of {annual_degradation_rate}, "
-            "average annual net benefit is {average_annual_net_benefit}. "
-            "Given a total CAPEX of {capex_total}, "
-            "simple payback is {payback_years}, "
-            "simple annual ROI is {simple_roi}, "
-            "NPV is {npv}, "
-            "IRR is {irr_text}, and LCOE is {lcoe_text}."
+            "From an investment-return perspective, the first-year financial benefit after deploying the energy storage system is {annual_energy_saving}. "
+            "After accounting for an annual storage capacity degradation rate of {annual_degradation_rate}, "
+            "the average annual net benefit over the project life is approximately {average_annual_net_benefit}. "
+            "Given capital expenditure of {capex_total}, "
+            "the simple payback period is {payback_years}, "
+            "the annualized return on investment (ROI) is {simple_roi}, "
+            "the net present value (NPV) is {npv}, "
+            "the internal rate of return (IRR) is {irr_text}, "
+            "and the levelized cost of energy (LCOE) is {lcoe_text}."
         ),
 
-        "decision_no_positive_benefit": (
-            "Under the current assumptions, the project does not generate positive average annual net benefit, "
-            "so investment is not recommended at this stage."
-        ),
-        "decision_no_finite_payback": (
-            "Although the project creates some savings, the current assumptions do not support a finite payback period. "
-            "It is recommended to optimize tariff spread, storage cost, or operation strategy first."
-        ),
+        "decision_no_positive_benefit": "Under the current input conditions and energy storage configuration strategy, the project does not generate a positive average annual net benefit. Energy storage deployment is therefore not recommended at this stage.",
+        "decision_no_finite_payback": "Although energy storage deployment can deliver some positive financial benefit, the payback period exceeds the equipment service life. Priority should be given to optimizing the operating strategy and staffing arrangement.",
         "decision_attractive": (
-            "The project appears financially attractive. Current assumptions suggest "
-            "a payback period of {payback_years:.2f} years, "
-            "a simple annual ROI of {simple_roi:.2%}, "
-            "and sample-period total saving of {total_saving_sample}.{extra}"
+            "Energy storage deployment is expected to deliver strong financial returns. Under the current input conditions, "
+            "the payback period is approximately {payback_years:.2f} years, "
+            "the annualized return on investment (ROI) is {simple_roi:.2%}, "
+            "and the expected total financial benefit is {total_saving_sample}.{extra}"
         ),
         "decision_payback_ok_roi_mid": (
-            "The project has a reasonable payback period of {payback_years:.2f} years, "
-            "but ROI is moderate. A pilot implementation or further parameter optimization is recommended."
+            "The payback period for energy storage deployment is approximately {payback_years:.2f} years, "
+            "but the annualized return on investment (ROI) is only moderate. "
+            "A pilot deployment is recommended first, followed by further optimization of the storage system size based on actual realized returns."
         ),
         "decision_positive_but_slow": (
-            "The project creates positive value, but current payback is {payback_years:.2f} years, "
-            "which is longer than the recommendation threshold of {payback_threshold_years:.2f} years. "
-            "It is recommended to refine sizing and assumptions before investment."
+            "Energy storage deployment can generate positive returns, but the estimated payback period is {payback_years:.2f} years, "
+            "which is above the recommended threshold of {payback_threshold_years:.2f} years. "
+            "Re-evaluation is recommended after optimizing the operating strategy and staffing arrangement."
         ),
-        "decision_extra_irr": " IRR is {irr:.2%}.",
-        "decision_extra_lcoe": " LCOE is {lcoe_text}.",
+        "decision_extra_irr": "The internal rate of return (IRR) is {irr:.2%}.",
+        "decision_extra_lcoe": "The levelized cost of energy (LCOE) is {lcoe_text}.",
 
-        "finding_sample_total_cost": "Sample-period total electricity cost: {value}",
-        "finding_annual_total_cost": "Annual total electricity cost: {value}",
+        "finding_sample_total_cost": "Total energy cost over the input load sample period: {value}",
+        "finding_annual_total_cost": "Annualized total energy cost: {value}",
         "finding_peak_load": "Peak load: {value:.2f} kWh",
-        "finding_max_power": "Maximum power: {value:.2f} kW",
-        "finding_load_factor": "Load factor: {value:.2%}",
-        "finding_weighted_avg_price": "Weighted average price: {value}",
-        "finding_storage_saving": "Sample-period storage saving: {value}",
+        "finding_max_power": "Maximum power demand: {value:.2f} kW",
+        "finding_load_factor": "Grid load factor: {value:.2%}",
+        "finding_weighted_avg_price": "Weighted average electricity tariff: {value}",
+        "finding_storage_saving": "Financial benefit from energy storage deployment over the input load sample period: {value}",
         "finding_average_annual_net_benefit": "Average annual net benefit: {value}",
-        "finding_payback_years": "Simple payback: {value}",
-        "finding_simple_roi": "Simple annual ROI: {value}",
-        "finding_irr": "IRR: {value}",
-        "finding_lcoe": "LCOE: {value}",
+        "finding_payback_years": "Simple payback period: {value}",
+        "finding_simple_roi": "Annualized return on investment (ROI): {value}",
+        "finding_irr": "Internal rate of return (IRR): {value}",
+        "finding_lcoe": "Levelized cost of energy (LCOE): {value}",
     },
 }
 
@@ -352,7 +347,7 @@ def generate_tariff_summary_text(
                 )
             )
 
-    return "".join(parts) if language == "zh" else "".join(parts).strip()
+    return "".join(parts) if language == "zh" else " ".join(parts).strip()
 
 
 # ============================================================
@@ -461,9 +456,9 @@ def generate_decision_recommendation(
     if payback_years <= payback_threshold_years and simple_roi is not None and simple_roi >= roi_threshold:
         extra = ""
         if irr is not None:
-            extra += text["decision_extra_irr"].format(irr=irr)
+            extra += " " + text["decision_extra_irr"].format(irr=irr)
         if lcoe is not None:
-            extra += text["decision_extra_lcoe"].format(
+            extra += " " + text["decision_extra_lcoe"].format(
                 lcoe_text=format_price_per_energy(lcoe, currency_symbol=currency_symbol, language=language)
             )
 
@@ -471,7 +466,7 @@ def generate_decision_recommendation(
             payback_years=payback_years,
             simple_roi=simple_roi,
             total_saving_sample=format_currency(total_saving_sample, currency_symbol, language),
-            extra=extra,
+            extra=extra.strip(),
         )
 
     if payback_years <= payback_threshold_years:

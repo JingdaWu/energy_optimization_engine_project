@@ -41,12 +41,17 @@ from visualization.plots import (
 )
 
 
-# ============================================================
-# Streamlit page config
-# ============================================================
+if "language" not in st.session_state:
+    st.session_state.language = "zh"
+
+def toggle_language() -> None:
+    st.session_state.language = "en" if st.session_state.language == "zh" else "zh"
+
+language = st.session_state.language
+T = get_text(language)
 
 st.set_page_config(
-    page_title="工业能源优化决策工具",
+    page_title=T["page_title"],
     page_icon="⚡",
     layout="wide",
 )
