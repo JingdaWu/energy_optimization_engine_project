@@ -70,122 +70,6 @@ is_zh = language == "zh"
 
 
 # ============================================================
-# UI text variables
-# ============================================================
-
-UI_APP_NAME = "工业能源优化决策工具" if is_zh else "Industrial Energy Optimization Decision Tool"
-UI_APP_SUBTITLE = (
-    "面向高能耗工厂与储能场景的电费分析、削峰套利与经济性决策支持平台"
-    if is_zh
-    else "A decision-oriented platform for electricity cost analysis, peak shaving, storage arbitrage, and project economics."
-)
-UI_APP_CAPTION = (
-    "用于能源成本优化、储能评估与管理层决策支持的科技风演示工具。"
-    if is_zh
-    else "A tech-style demo for energy cost optimization, storage evaluation, and executive decision support."
-)
-
-UI_CHIPS = [
-    "分时电价分析" if is_zh else "TOU Tariff Analysis",
-    "功率电费评估" if is_zh else "Power Charge Evaluation",
-    "储能套利仿真" if is_zh else "Storage Arbitrage",
-    "经济性指标" if is_zh else "Financial Metrics",
-]
-
-UI_SECTION_DATA_INPUT = "数据输入" if is_zh else "Data Input"
-UI_SECTION_DATA_INPUT_DESC = (
-    "上传负荷数据并准备仿真输入。"
-    if is_zh
-    else "Upload the load profile and prepare simulation inputs."
-)
-
-UI_SECTION_TARIFF = "电价配置" if is_zh else "Tariff Configuration"
-UI_SECTION_TARIFF_DESC = (
-    "选择分时电价模式并配置价格参数。"
-    if is_zh
-    else "Select the tariff mode and define electricity pricing."
-)
-
-UI_SECTION_POWER = "功率电费配置" if is_zh else "Power Charge Configuration"
-UI_SECTION_POWER_DESC = (
-    "设置容量或需量计费方式。"
-    if is_zh
-    else "Configure capacity-based or demand-based power charges."
-)
-
-UI_SECTION_STORAGE = "储能配置" if is_zh else "Storage Configuration"
-UI_SECTION_STORAGE_DESC = (
-    "选择是否启用储能，并定义系统参数。"
-    if is_zh
-    else "Enable storage if needed and configure the system parameters."
-)
-
-UI_SCENARIO_SUMMARY = "当前场景摘要" if is_zh else "Scenario Summary"
-UI_EXEC_SUMMARY = "执行摘要" if is_zh else "Executive Summary"
-UI_DETAIL_INSIGHTS = "详细解读" if is_zh else "Detailed Insights"
-UI_BEFORE_AFTER = "优化前后对比" if is_zh else "Before vs After Overview"
-UI_DETAIL_TABLE = "详细结果表" if is_zh else "Detailed Result Table"
-UI_DETAIL_TABLE_HINT = (
-    "以下表格用于工程复核与明细查看。"
-    if is_zh
-    else "Use the table below for engineering review and detailed inspection."
-)
-
-UI_LABEL_TARIFF_MODE = "电价模式" if is_zh else "Tariff Mode"
-UI_LABEL_POWER_MODE = "功率计费" if is_zh else "Power Charge"
-UI_LABEL_STORAGE_MODE = "储能状态" if is_zh else "Storage"
-UI_LABEL_DATA_STATUS = "数据状态" if is_zh else "Load Data"
-
-UI_VALUE_UPLOADED = "已上传" if is_zh else "Uploaded"
-UI_VALUE_NOT_UPLOADED = "未上传" if is_zh else "Not uploaded"
-UI_VALUE_ENABLED = "启用" if is_zh else "Enabled"
-UI_VALUE_DISABLED = "关闭" if is_zh else "Disabled"
-UI_VALUE_MANUAL = "手动分时" if is_zh else "Manual"
-UI_VALUE_TABLE = "月度价格表" if is_zh else "Monthly Table"
-UI_VALUE_CAPACITY = "容量电费" if is_zh else "Capacity"
-UI_VALUE_DEMAND = "需量电费" if is_zh else "Demand"
-
-UI_RUN_HINT = "准备完成后运行场景分析" if is_zh else "Run the scenario analysis when configuration is ready"
-UI_RUN_BUTTON = "开始生成决策结果" if is_zh else "Generate Decision Results"
-
-UI_EMPTY_TITLE = "准备开始一次新的能源场景评估" if is_zh else "Ready to Evaluate a New Energy Scenario"
-UI_EMPTY_BODY = (
-    "请先在左侧依次完成：1）上传负荷 CSV；2）配置电价模式；3）选择功率电费方式；4）按需启用储能系统；最后点击“开始生成决策结果”。如果暂时没有自己的数据，可以先下载模板文件进行试用。"
-    if is_zh
-    else "Use the left sidebar to: 1) upload a load CSV, 2) configure the tariff mode, 3) select the power charge method, and 4) optionally enable storage. Then click 'Generate Decision Results'. If you do not have your own data yet, download the templates and try the demo first."
-)
-
-UI_ANALYSIS_DONE = (
-    "本次场景分析已完成，以下结果可用于技术判断与管理决策。"
-    if is_zh
-    else "Scenario analysis completed. The results below can support both engineering review and executive decision-making."
-)
-
-UI_KPI_DESC = (
-    "优先展示可直接支持投资与部署决策的关键指标。"
-    if is_zh
-    else "Decision-first metrics for investment and deployment evaluation."
-)
-
-UI_OPER_DESC = (
-    "运行特征指标用于解释成本变化与峰值行为。"
-    if is_zh
-    else "Operational indicators explain the cost structure and peak behavior."
-)
-
-UI_BEFORE_STORAGE = "储能前" if is_zh else "Before Storage"
-UI_AFTER_STORAGE = "储能后" if is_zh else "After Storage"
-UI_SAVING_RATIO = "节省比例" if is_zh else "Saving Ratio"
-UI_ENERGY_SAVING = "电量电费节省" if is_zh else "Energy Saving"
-UI_POWER_CHARGE_SAVING = "功率电费节省" if is_zh else "Power Charge Saving"
-UI_PEAK_REDUCTION = "峰值功率降低" if is_zh else "Peak Reduction"
-UI_OPTIMIZED_MAX_POWER = "优化后最大功率" if is_zh else "Optimized Max Power"
-UI_TARIFF_BREAKDOWN = "电价明细" if is_zh else "Tariff Breakdown"
-UI_STORAGE_RESULT_PREVIEW = "储能结果预览" if is_zh else "Storage Result Preview"
-UI_TARIFF_RESULT_PREVIEW = "电价结果预览" if is_zh else "Tariff Result Preview"
-
-
-# ============================================================
 # UI style
 # ============================================================
 UI_COLOR_BORDER_SIDEBAR = "rgba(255,255,255,0.10)"
@@ -436,7 +320,7 @@ with top_right:
 # Sidebar - data input
 # ============================================================
 
-render_sidebar_section(UI_SECTION_DATA_INPUT, UI_SECTION_DATA_INPUT_DESC)
+render_sidebar_section(T["section_data_input"], T["section_data_input_desc"])
 
 load_col1, load_col2 = st.sidebar.columns([3, 2])
 with load_col1:
@@ -460,19 +344,19 @@ with load_col2:
 # Sidebar - tariff config
 # ============================================================
 
-render_sidebar_section(UI_SECTION_TARIFF, UI_SECTION_TARIFF_DESC)
+render_sidebar_section(T["section_tariff"], T["section_tariff_desc"])
 
 if "tariff_mode_radio" not in st.session_state:
-    st.session_state.tariff_mode_radio = UI_VALUE_MANUAL
+    st.session_state.tariff_mode_radio = T["value_manual"]
 
 tariff_mode_label = st.sidebar.radio(
-    UI_LABEL_TARIFF_MODE,
-    options=[UI_VALUE_MANUAL, UI_VALUE_TABLE],
+    T["label_tariff_mode"],
+    options=[T["value_manual"], T["value_table"]],
     key="tariff_mode_radio",
     horizontal=True,
 )
 
-tariff_mode = "manual" if tariff_mode_label == UI_VALUE_MANUAL else "table"
+tariff_mode = "manual" if tariff_mode_label == T["value_manual"] else "table"
 
 monthly_tariff_table_df = None
 uploaded_tariff_table = None
@@ -566,19 +450,19 @@ else:
 # Sidebar - power charge config
 # ============================================================
 
-render_sidebar_section(UI_SECTION_POWER, UI_SECTION_POWER_DESC)
+render_sidebar_section(T["section_power"], T["section_power_desc"])
 
 if "power_charge_mode_radio" not in st.session_state:
-    st.session_state.power_charge_mode_radio = UI_VALUE_CAPACITY
+    st.session_state.power_charge_mode_radio = T["value_capacity"]
 
 power_charge_mode_label = st.sidebar.radio(
-    UI_LABEL_POWER_MODE,
-    options=[UI_VALUE_CAPACITY, UI_VALUE_DEMAND],
+    T["label_power_mode"],
+    options=[T["value_capacity"], T["value_demand"]],
     key="power_charge_mode_radio",
     horizontal=True,
 )
 
-power_charge_mode = "capacity" if power_charge_mode_label == UI_VALUE_CAPACITY else "demand"
+power_charge_mode = "capacity" if power_charge_mode_label == T["value_capacity"] else "demand"
 
 capacity_price_per_kw = 0.0
 contract_buffer_ratio = 0.0
@@ -613,19 +497,19 @@ else:
 # Sidebar - storage config
 # ============================================================
 
-render_sidebar_section(UI_SECTION_STORAGE, UI_SECTION_STORAGE_DESC)
+render_sidebar_section(T["section_storage"], T["section_storage_desc"])
 
 if "use_storage_mode_radio" not in st.session_state:
-    st.session_state.use_storage_mode_radio = UI_VALUE_DISABLED
+    st.session_state.use_storage_mode_radio = T["value_disabled"]
 
 use_storage_label = st.sidebar.radio(
-    UI_LABEL_STORAGE_MODE,
-    options=[UI_VALUE_DISABLED, UI_VALUE_ENABLED],
+    T["label_storage_mode"],
+    options=[T["value_disabled"], T["value_enabled"]],
     key="use_storage_mode_radio",
     horizontal=True,
 )
 
-use_storage = use_storage_label == UI_VALUE_ENABLED
+use_storage = use_storage_label == T["value_enabled"]
 
 storage_params = None
 uploaded_storage_file = None
@@ -789,11 +673,11 @@ if use_storage:
 st.sidebar.markdown("")
 st.sidebar.markdown(
     f"""
-    <div class="small-note">{UI_RUN_HINT}</div>
+    <div class="small-note">{T['run_hint']}</div>
     """,
     unsafe_allow_html=True,
 )
-run_button = st.sidebar.button(UI_RUN_BUTTON, type="primary", use_container_width=True)
+run_button = st.sidebar.button(T["run_button_new"], type="primary", use_container_width=True)
 
 
 # ============================================================
@@ -803,47 +687,55 @@ run_button = st.sidebar.button(UI_RUN_BUTTON, type="primary", use_container_widt
 st.markdown(
     f"""
     <div class="hero-card">
-        <div class="hero-title">{UI_APP_NAME}</div>
-        <div class="hero-subtitle">{UI_APP_SUBTITLE}</div>
+        <div class="hero-title">{T['app_name']}</div>
+        <div class="hero-subtitle">{T['app_subtitle']}</div>
         <div class="chip-row">
-            {''.join([f"<span class='chip'>{chip}</span>" for chip in UI_CHIPS])}
+            {''.join([
+                f"<span class='chip'>{chip}</span>"
+                for chip in [
+                    T["chip_tou_tariff_analysis"],
+                    T["chip_power_charge_evaluation"],
+                    T["chip_storage_arbitrage"],
+                    T["chip_financial_metrics"],
+                ]
+            ])}
         </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-st.caption(UI_APP_CAPTION)
+st.caption(T["app_caption"])
 
 
 # ============================================================
 # Scenario summary
 # ============================================================
 
-scenario_tariff = UI_VALUE_MANUAL if tariff_mode == "manual" else UI_VALUE_TABLE
-scenario_power = UI_VALUE_CAPACITY if power_charge_mode == "capacity" else UI_VALUE_DEMAND
-scenario_storage = UI_VALUE_ENABLED if use_storage else UI_VALUE_DISABLED
-scenario_data = UI_VALUE_UPLOADED if uploaded_load_file is not None else UI_VALUE_NOT_UPLOADED
+scenario_tariff = T["value_manual"] if tariff_mode == "manual" else T["value_table"]
+scenario_power = T["value_capacity"] if power_charge_mode == "capacity" else T["value_demand"]
+scenario_storage = T["value_enabled"] if use_storage else T["value_disabled"]
+scenario_data = T["value_uploaded"] if uploaded_load_file is not None else T["value_not_uploaded"]
 
 st.markdown(
     f"""
     <div class="scenario-bar">
-        <div class="section-title" style="margin-bottom:10px;">{UI_SCENARIO_SUMMARY}</div>
+        <div class="section-title" style="margin-bottom:10px;">{T['scenario_summary']}</div>
         <div class="scenario-grid">
             <div class="scenario-item">
-                <div class="scenario-label">{UI_LABEL_TARIFF_MODE}</div>
+                <div class="scenario-label">{T['label_tariff_mode']}</div>
                 <div class="scenario-value">{scenario_tariff}</div>
             </div>
             <div class="scenario-item">
-                <div class="scenario-label">{UI_LABEL_POWER_MODE}</div>
+                <div class="scenario-label">{T['label_power_mode']}</div>
                 <div class="scenario-value">{scenario_power}</div>
             </div>
             <div class="scenario-item">
-                <div class="scenario-label">{UI_LABEL_STORAGE_MODE}</div>
+                <div class="scenario-label">{T['label_storage_mode']}</div>
                 <div class="scenario-value">{scenario_storage}</div>
             </div>
             <div class="scenario-item">
-                <div class="scenario-label">{UI_LABEL_DATA_STATUS}</div>
+                <div class="scenario-label">{T['label_data_status']}</div>
                 <div class="scenario-value">{scenario_data}</div>
             </div>
         </div>
@@ -1082,13 +974,13 @@ if run_button:
         # Output header
         # ============================================================
 
-        st.success(UI_ANALYSIS_DONE)
+        st.success(T["analysis_done"])
 
         # ------------------------------------------------------------
         # Section A: Decision KPIs
         # ------------------------------------------------------------
         st.markdown(f"<div class='panel-title'>{T['key_metrics']}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='panel-subtitle'>{UI_KPI_DESC}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='panel-subtitle'>{T['kpi_desc']}</div>", unsafe_allow_html=True)
 
         if use_storage and finance_summary is not None and total_saving_sample is not None:
             kpi1, kpi2, kpi3, kpi4 = st.columns(4)
@@ -1140,7 +1032,7 @@ if run_button:
             kpi3.metric(T["peak_load"], f"{load_analysis['basic_metrics']['peak_load_kwh']:,.2f} kWh")
             kpi4.metric(T["weighted_avg_price"], f"¥{weighted_average_price:,.4f}/kWh")
 
-        st.markdown(f"<div class='panel-subtitle'>{UI_OPER_DESC}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='panel-subtitle'>{T['oper_desc']}</div>", unsafe_allow_html=True)
         op1, op2, op3, op4 = st.columns(4)
         op1.metric(T["max_power"], f"{base_max_power_kw:,.2f} kW")
         op2.metric(T["load_factor"], f"{base_load_factor:.2%}")
@@ -1154,36 +1046,36 @@ if run_button:
             st.markdown(
                 f"""
                 <div class="summary-card">
-                    <div class="summary-title">{UI_BEFORE_AFTER}</div>
+                    <div class="summary-title">{T['before_after_overview']}</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
 
             bf1, bf2, bf3, bf4 = st.columns(4)
-            bf1.metric(UI_BEFORE_STORAGE, f"¥{sample_total_cost:,.2f}")
-            bf2.metric(UI_AFTER_STORAGE, f"¥{optimized_total_cost_sample:,.2f}")
+            bf1.metric(T["before_storage"], f"¥{sample_total_cost:,.2f}")
+            bf2.metric(T["after_storage"], f"¥{optimized_total_cost_sample:,.2f}")
             bf3.metric(T["storage_saving"], f"¥{total_saving_sample:,.2f}")
             bf4.metric(
-                UI_SAVING_RATIO,
+                T["saving_ratio"],
                 T["not_available"] if saving_ratio is None else f"{saving_ratio:.2%}",
             )
 
             bf5, bf6, bf7, bf8 = st.columns(4)
             bf5.metric(
-                UI_ENERGY_SAVING,
+                T["energy_saving"],
                 f"¥{energy_saving_sample:,.2f}" if energy_saving_sample is not None else T["not_available"],
             )
             bf6.metric(
-                UI_POWER_CHARGE_SAVING,
+                T["power_charge_saving"],
                 f"¥{power_charge_saving_sample:,.2f}" if power_charge_saving_sample is not None else T["not_available"],
             )
             bf7.metric(
-                UI_PEAK_REDUCTION,
+                T["peak_reduction"],
                 T["not_available"] if peak_reduction_kw is None else f"{peak_reduction_kw:,.2f} kW",
             )
             bf8.metric(
-                UI_OPTIMIZED_MAX_POWER,
+                T["optimized_max_power"],
                 T["not_available"]
                 if optimized_power_charge_summary is None
                 else f"{optimized_power_charge_summary['max_power_kw']:,.2f} kW",
@@ -1298,7 +1190,7 @@ if run_button:
         st.markdown(
             f"""
             <div class="summary-card">
-                <div class="summary-title">{UI_EXEC_SUMMARY}</div>
+                <div class="summary-title">{T['executive_summary']}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -1320,7 +1212,7 @@ if run_button:
         st.markdown(
             f"""
             <div class="summary-card">
-                <div class="summary-title">{UI_DETAIL_INSIGHTS}</div>
+                <div class="summary-title">{T['detailed_insights']}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -1346,17 +1238,17 @@ if run_button:
         # ------------------------------------------------------------
         # Section E: Detailed table
         # ------------------------------------------------------------
-        with st.expander(UI_DETAIL_TABLE, expanded=False):
-            st.caption(UI_DETAIL_TABLE_HINT)
+        with st.expander(T["detailed_result_table"], expanded=False):
+            st.caption(T["detailed_result_table_hint"])
             if tariff_breakdown_df is not None:
-                st.markdown(f"**{UI_TARIFF_BREAKDOWN}**")
+                st.markdown(f"**{T['tariff_breakdown']}**")
                 st.dataframe(tariff_breakdown_df, use_container_width=True)
 
             if use_storage and storage_result_df is not None:
-                st.markdown(f"**{UI_STORAGE_RESULT_PREVIEW}**")
+                st.markdown(f"**{T['storage_result_preview']}**")
                 st.dataframe(storage_result_df.head(50), use_container_width=True)
             else:
-                st.markdown(f"**{UI_TARIFF_RESULT_PREVIEW}**")
+                st.markdown(f"**{T['tariff_result_preview']}**")
                 st.dataframe(tariff_df.head(50), use_container_width=True)
 
     except Exception as e:
@@ -1366,8 +1258,8 @@ else:
     st.markdown(
         f"""
         <div class="empty-state">
-            <div class="empty-title">{UI_EMPTY_TITLE}</div>
-            <div class="empty-body">{UI_EMPTY_BODY}</div>
+            <div class="empty-title">{T['empty_title']}</div>
+            <div class="empty-body">{T['empty_body']}</div>
         </div>
         """,
         unsafe_allow_html=True,

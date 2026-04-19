@@ -5,6 +5,8 @@ from typing import Optional
 import pandas as pd
 import plotly.graph_objects as go
 
+from utils.i18n import get_text
+
 
 # ============================================================
 # Internal language / label helpers
@@ -22,82 +24,44 @@ def _infer_language(*texts: str) -> str:
 
 
 def _plot_text(language: str) -> dict:
-    if language == "zh":
-        return {
-            "load": "负荷",
-            "avg_load": "平均负荷",
-            "price": "电价",
-            "charge_from_grid": "电网充电量 (kWh)",
-            "discharge_to_load": "向负荷放电量 (kWh)",
-            "soc": "SOC (kWh)",
-            "original_load": "原始负荷",
-            "optimized_net_load": "优化后电网负荷",
-            "cash_flow": "现金流",
-            "kpi_values": "指标数值",
-            "payback_years": "回本周期",
-            "roi": "ROI",
-            "annual_net_benefit": "年净收益",
-            "factory_load_curve": "工厂负荷曲线",
-            "avg_load_by_hour": "分时平均负荷",
-            "load_curve_with_tariff_price": "负荷与电价时间序列",
-            "electricity_cost_share_by_tariff_period": "分时段电费占比",
-            "storage_charge_discharge_soc": "储能充放电与SOC",
-            "original_vs_optimized_grid_load": "原始与优化后电网负荷",
-            "electricity_cost_reduction": "电费下降对比",
-            "project_cash_flows": "项目现金流",
-            "key_financial_indicators": "关键财务指标",
-            "time": "时间",
-            "hour_of_day": "时段",
-            "load_kwh": "负荷 (kWh)",
-            "avg_load_kwh": "平均负荷 (kWh)",
-            "price_axis": "电价",
-            "charge_discharge_kwh": "充放电量 (kWh)",
-            "soc_axis": "SOC (kWh)",
-            "relative_cost_pct": "相对成本 (%)",
-            "year": "年份",
-            "cash_flow_axis": "现金流",
-            "metric": "指标",
-            "value": "数值",
-            "before_storage": "储能前",
-            "after_storage": "储能后",
-        }
+    t = get_text(language)
     return {
-        "load": "Load",
-        "avg_load": "Average Load",
-        "price": "Price",
-        "charge_from_grid": "Charge from Grid (kWh)",
-        "discharge_to_load": "Discharge to Load (kWh)",
-        "soc": "SOC (kWh)",
-        "original_load": "Original Load",
-        "optimized_net_load": "Optimized Net Load",
-        "cash_flow": "Cash Flow",
-        "kpi_values": "KPI Values",
-        "payback_years": "Payback (Years)",
-        "roi": "ROI",
-        "annual_net_benefit": "Annual Net Benefit",
-        "factory_load_curve": "Factory Load Curve",
-        "avg_load_by_hour": "Average Load by Hour",
-        "load_curve_with_tariff_price": "Load Curve with Tariff Price",
-        "electricity_cost_share_by_tariff_period": "Electricity Cost Share by Tariff Period",
-        "storage_charge_discharge_soc": "Storage Charge, Discharge, and SOC",
-        "original_vs_optimized_grid_load": "Original vs Optimized Grid Load",
-        "electricity_cost_reduction": "Electricity Cost Reduction",
-        "project_cash_flows": "Project Cash Flows",
-        "key_financial_indicators": "Key Financial Indicators",
-        "time": "Time",
-        "hour_of_day": "Hour of Day",
-        "load_kwh": "Load (kWh)",
-        "avg_load_kwh": "Average Load (kWh)",
-        "price_axis": "Price",
-        "charge_discharge_kwh": "Charge / Discharge (kWh)",
-        "soc_axis": "SOC (kWh)",
-        "relative_cost_pct": "Relative Cost (%)",
-        "year": "Year",
-        "cash_flow_axis": "Cash Flow",
-        "metric": "Metric",
-        "value": "Value",
-        "before_storage": "Before Storage",
-        "after_storage": "After Storage",
+        "load": t["plot_load"],
+        "avg_load": t["plot_avg_load"],
+        "price": t["plot_price"],
+        "charge_from_grid": t["plot_charge_from_grid"],
+        "discharge_to_load": t["plot_discharge_to_load"],
+        "soc": t["plot_soc"],
+        "original_load": t["plot_original_load"],
+        "optimized_net_load": t["plot_optimized_net_load"],
+        "cash_flow": t["plot_cash_flow"],
+        "kpi_values": t["plot_kpi_values"],
+        "payback_years": t["plot_payback_years"],
+        "roi": t["plot_roi"],
+        "annual_net_benefit": t["plot_annual_net_benefit"],
+        "factory_load_curve": t["factory_load_curve"],
+        "avg_load_by_hour": t["avg_load_by_hour"],
+        "load_curve_with_tariff_price": t["load_with_price"],
+        "electricity_cost_share_by_tariff_period": t["tariff_share_pie"],
+        "storage_charge_discharge_soc": t["storage_soc_chart"],
+        "original_vs_optimized_grid_load": t["optimized_load_chart"],
+        "electricity_cost_reduction": t["cost_reduction_chart"],
+        "project_cash_flows": t["project_cash_flows"],
+        "key_financial_indicators": t["key_financial_indicators"],
+        "time": t["time"],
+        "hour_of_day": t["hour_of_day"],
+        "load_kwh": t["load_kwh_axis"],
+        "avg_load_kwh": t["avg_load_kwh_axis"],
+        "price_axis": t["price_axis"],
+        "charge_discharge_kwh": t["charge_discharge_axis"],
+        "soc_axis": t["soc_axis"],
+        "relative_cost_pct": t["relative_cost_axis"],
+        "year": t["year"],
+        "cash_flow_axis": t["cash_flow_axis"],
+        "metric": t["metric_axis"],
+        "value": t["value_axis"],
+        "before_storage": t["before_storage"],
+        "after_storage": t["after_storage"],
     }
 
 
@@ -111,9 +75,6 @@ def _build_base_layout(
     yaxis_title: str = "",
     height: int = 420,
 ) -> dict:
-    """
-    Build a consistent Plotly layout for the dashboard.
-    """
     return {
         "title": {"text": title, "x": 0.02},
         "xaxis": {"title": xaxis_title},
@@ -139,9 +100,6 @@ def plot_load_curve(
     yaxis_title: str = "Load (kWh)",
     load_label: Optional[str] = None,
 ) -> go.Figure:
-    """
-    Plot the original factory load curve.
-    """
     required_columns = [time_column, load_column]
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
@@ -181,9 +139,6 @@ def plot_hourly_average_load(
     yaxis_title: str = "Average Load (kWh)",
     avg_load_label: Optional[str] = None,
 ) -> go.Figure:
-    """
-    Plot hourly average load profile.
-    """
     required_columns = [hour_column, avg_load_column]
     missing_columns = [col for col in required_columns if col not in hourly_profile_df.columns]
     if missing_columns:
@@ -229,9 +184,6 @@ def plot_tariff_load_curve(
     load_label: Optional[str] = None,
     price_label: Optional[str] = None,
 ) -> go.Figure:
-    """
-    Plot load curve and tariff price using dual y-axes.
-    """
     required_columns = [time_column, load_column, price_column]
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
@@ -288,9 +240,6 @@ def plot_tariff_cost_share_pie(
     value_column: str = "total_cost",
     title: str = "Electricity Cost Share by Tariff Period",
 ) -> go.Figure:
-    """
-    Plot tariff cost share as a pie chart.
-    """
     required_columns = [label_column, value_column]
     missing_columns = [col for col in required_columns if col not in breakdown_df.columns]
     if missing_columns:
@@ -333,9 +282,6 @@ def plot_storage_operation(
     discharge_label: Optional[str] = None,
     soc_label: Optional[str] = None,
 ) -> go.Figure:
-    """
-    Plot storage charging, discharging, and SOC using dual y-axes.
-    """
     required_columns = [time_column, charge_column, discharge_column, soc_column]
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
@@ -407,9 +353,6 @@ def plot_original_vs_optimized_load(
     original_label: Optional[str] = None,
     optimized_label: Optional[str] = None,
 ) -> go.Figure:
-    """
-    Plot original load and optimized net grid load.
-    """
     required_columns = [time_column, original_load_column, optimized_load_column]
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
@@ -462,10 +405,6 @@ def plot_cost_reduction_horizontal_bar(
     original_label: str = "Before Storage",
     optimized_label: str = "After Storage",
 ) -> go.Figure:
-    """
-    Plot cost reduction using horizontal relative bars.
-    Original cost is normalized to 100%.
-    """
     if original_cost <= 0:
         raise ValueError("original_cost must be greater than 0.")
 
@@ -518,9 +457,6 @@ def plot_project_cash_flows(
     yaxis_title: str = "Cash Flow",
     cash_flow_label: Optional[str] = None,
 ) -> go.Figure:
-    """
-    Plot project cash flows by year.
-    """
     years = list(range(len(cash_flows)))
     language = _infer_language(title, xaxis_title, yaxis_title)
     t = _plot_text(language)
@@ -562,9 +498,6 @@ def plot_kpi_comparison(
     annual_net_benefit_label: Optional[str] = None,
     kpi_values_label: Optional[str] = None,
 ) -> go.Figure:
-    """
-    Plot a compact KPI comparison chart.
-    """
     language = _infer_language(title, xaxis_title, yaxis_title)
     t = _plot_text(language)
 
