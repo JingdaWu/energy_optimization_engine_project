@@ -1,0 +1,2 @@
+storage_capacity_kwh,storage_power_kw,charge_efficiency,discharge_efficiency,min_soc_ratio,max_soc_ratio,capex_total,annual_om_cost,project_years,discount_rate,annual_degradation_rate
+2000,500,0.95,0.95,0.10,0.90,1800000,60000,10,0.08,0.02
