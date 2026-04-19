@@ -10,19 +10,19 @@ from typing import Dict, List, Optional
 REPORT_TEXT = {
     "zh": {
         "na": "N/A",
-        "payback_not_achievable": "当前假设下无法回本",
+        "payback_not_achievable": "当前输入数据条件下无法实现经济正收益",
 
-        "load_extra_max_power": "估算最大功率为 {max_power:.2f} kW。",
+        "load_extra_max_power": "预估最大功率为 {max_power:.2f} kW。",
         "load_summary": (
-            "该工厂在样本周期内的峰值负荷为 {peak_load:.2f} kWh，"
+            "数据中心或数字基础设施在输入样品负荷周期内的峰值负荷为 {peak_load:.2f} kWh，"
             "平均负荷为 {avg_load:.2f} kWh，最低负荷为 {min_load:.2f} kWh。"
-            "峰谷差为 {peak_valley_diff:.2f} kWh，负载率为 {load_factor:.2%}。"
-            "样本周期总用电量为 {total_load:.2f} kWh。"
+            "峰谷耗电量差为 {peak_valley_diff:.2f} kWh，负载率为 {load_factor:.2%}。"
+            "输入样品负荷周期内总用电量为 {total_load:.2f} kWh。"
             "{extra}"
         ),
 
-        "tariff_sample_energy_cost": "样本周期电量电费为 {sample_energy_cost}。",
-        "tariff_annual_energy_cost": "折算全年电量电费约为 {annual_energy_cost}。",
+        "tariff_sample_energy_cost": "输入样品负荷周期内峰谷电费支出为 {sample_energy_cost}。",
+        "tariff_annual_energy_cost": "折算全年峰谷电费支出约为 {annual_energy_cost}。",
         "tariff_weighted_price": "加权平均电价为 {weighted_average_price}。",
         "tariff_capacity_charge": (
             "按容量计费方式估算，最大功率约为 {max_power:.2f} kW，"
@@ -34,54 +34,54 @@ REPORT_TEXT = {
         ),
 
         "storage_summary": (
-            "在当前规则策略下，储能系统在样本周期内累计充电 {total_charge}，"
+            "在当前储能设备参数条件下，储能系统在输入样品负荷周期内累计充电 {total_charge}，"
             "累计放电 {total_discharge}，估算循环次数为 {estimated_cycles:.2f} 次，"
             "利用率为 {utilization_ratio}。"
-            "其中电量电费节省为 {energy_saving}，"
-            "功率电费节省为 {power_charge_saving}，"
-            "合计节省为 {total_saving}。"
+            "其中峰谷电费经济性收益为 {energy_saving}，"
+            "功率电费经济性收益为 {power_charge_saving}，"
+            "合计总经济性收益为 {total_saving}。"
         ),
 
         "finance_summary": (
-            "从投资角度看，首年年化节省约为 {annual_energy_saving}，"
-            "考虑年容量衰减率 {annual_degradation_rate} 后，"
-            "项目平均年净收益约为 {average_annual_net_benefit}。"
-            "在总投资 {capex_total} 的假设下，"
+            "从投资收益性角度分析，引入储能系统后首年经济性收益为 {annual_energy_saving}，"
+            "考虑到储能设备年容量衰减率 {annual_degradation_rate} 后，"
+            "项目周期内平均年净收益约为 {average_annual_net_benefit}。"
+            "在设备成本支出 {capex_total} 的条件下，"
             "静态回本周期为 {payback_years}，"
-            "简单年化 ROI 为 {simple_roi}，"
-            "项目 NPV 为 {npv}，"
-            "IRR 为 {irr_text}，LCOE 为 {lcoe_text}。"
+            "年化投资回报率 (ROI) 为 {simple_roi}，"
+            "项目净现值 (NPV) 为 {npv}，"
+            "内部收益率 (IRR) 为 {irr_text}，平准化能源成本 (LCOE) 为 {lcoe_text}。"
         ),
 
-        "decision_no_positive_benefit": "在当前参数假设下，项目尚不能形成正的平均年净收益，因此暂不建议直接投资。",
-        "decision_no_finite_payback": "虽然项目可以带来一定节省，但当前参数下仍无法形成明确回本周期，建议先优化电价差、储能成本或运行策略。",
+        "decision_no_positive_benefit": "在当前输入数据条件与储能配置策略下，尚不能形成正向平均年净收益，因此暂不建议引入储能系统。",
+        "decision_no_finite_payback": "虽然引入储能系统可以带来一定正向经济收益，但回本周期长于设备使用年限，建议优先优化设备运行策略和人员调度。",
         "decision_attractive": (
-            "该项目具备较强投资吸引力。当前假设下，回本周期约为 {payback_years:.2f} 年，"
-            "简单年化 ROI 为 {simple_roi:.2%}，样本周期总节省为 {total_saving_sample}。{extra}"
+            "引入储能系统具备较强经济性收益预期。当前输入数据条件下，回本周期约为 {payback_years:.2f} 年，"
+            "年化投资回报率 (ROI) 为 {simple_roi:.2%}，预期经济性总收益为 {total_saving_sample}。{extra}"
         ),
         "decision_payback_ok_roi_mid": (
-            "该项目回本周期约为 {payback_years:.2f} 年，但 ROI 表现一般。"
-            "建议先进行试点部署，或进一步优化储能规模、电价假设与控制策略。"
+            "引入储能系统回本周期约为 {payback_years:.2f} 年，但年化投资回报率 (ROI) 表现一般。"
+            "建议优先进行储能设备试点部署，根据实际收益进一步优化储能规模。"
         ),
         "decision_positive_but_slow": (
-            "该项目可以带来正向收益，但当前回本周期为 {payback_years:.2f} 年，"
-            "高于建议阈值 {payback_threshold_years:.2f} 年，建议继续优化配置和参数后再评估。"
+            "引入储能系统可以带来正向收益，但预估回本周期为 {payback_years:.2f} 年，"
+            "高于建议阈值 {payback_threshold_years:.2f} 年，建议在优化设备运行策略和人员调度后重新评估。"
         ),
-        "decision_extra_irr": " IRR 为 {irr:.2%}。",
-        "decision_extra_lcoe": " LCOE 为 {lcoe_text}。",
+        "decision_extra_irr": "内部收益率 (IRR) 为 {irr:.2%}。",
+        "decision_extra_lcoe": "平准化能源成本 (LCOE) 为 {lcoe_text}。",
 
-        "finding_sample_total_cost": "样本周期总电费：{value}",
-        "finding_annual_total_cost": "年化总电费：{value}",
+        "finding_sample_total_cost": "输入样品负荷周期内总能源支出：{value}",
+        "finding_annual_total_cost": "年化总能源支出：{value}",
         "finding_peak_load": "峰值负荷：{value:.2f} kWh",
         "finding_max_power": "最大功率：{value:.2f} kW",
-        "finding_load_factor": "负载率：{value:.2%}",
+        "finding_load_factor": "电网负载率：{value:.2%}",
         "finding_weighted_avg_price": "加权电价：{value}",
-        "finding_storage_saving": "样本周期储能节省：{value}",
+        "finding_storage_saving": "输入样品负荷周期内引入储能系统后的经济收益：{value}",
         "finding_average_annual_net_benefit": "平均年净收益：{value}",
         "finding_payback_years": "静态回本周期：{value}",
-        "finding_simple_roi": "简单年化 ROI：{value}",
-        "finding_irr": "IRR：{value}",
-        "finding_lcoe": "LCOE：{value}",
+        "finding_simple_roi": "简单年化投资回报率 (ROI)：{value}",
+        "finding_irr": "内部收益率 (IRR)：{value}",
+        "finding_lcoe": "平准化能源成本 (LCOE)：{value}",
     },
     "en": {
         "na": "N/A",
