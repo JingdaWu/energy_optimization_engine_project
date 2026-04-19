@@ -40,6 +40,7 @@ REPORT_TEXT = {
             "其中峰谷电费经济性收益为 {energy_saving}，"
             "功率电费经济性收益为 {power_charge_saving}，"
             "合计总经济性收益为 {total_saving}。"
+            "{strategy_extra}"
         ),
 
         "finance_summary": (
@@ -82,6 +83,16 @@ REPORT_TEXT = {
         "finding_simple_roi": "简单年化投资回报率 (ROI)：{value}",
         "finding_irr": "内部收益率 (IRR)：{value}",
         "finding_lcoe": "平准化能源成本 (LCOE)：{value}",
+
+
+        # ============================================================
+        # 2026-04-19: Added report texts for smarter storage strategy.
+        # ============================================================
+        "storage_priority_charge": "优先充电时段（深谷/谷）承担了 {value} 的充电量。",
+        "storage_priority_discharge": "优先放电时段（尖峰/峰）承担了 {value} 的放电量。",
+        "storage_demand_limit": "为避免低电价时段充电抬高最大需量，限功率充电策略共触发 {hours} 个时段。",
+        "storage_event_count": "输入样品负荷周期内共发生 {charge_events} 个充电时段、{discharge_events} 个放电时段。",
+        "storage_daily_plan": "储能调度先按天读取负荷与电价时段后再执行，本次样品共完成 {days} 天的日内规划。",
     },
     "en": {
         "na": "N/A",
@@ -116,7 +127,8 @@ REPORT_TEXT = {
             "The estimated cycle count is {estimated_cycles:.2f}, and the utilization ratio is {utilization_ratio}. "
             "The financial benefit from TOU energy charge optimization is {energy_saving}, "
             "the financial benefit from power charge reduction is {power_charge_saving}, "
-            "and the total financial benefit is {total_saving}."
+            "and the total financial benefit is {total_saving}. "
+            "{strategy_extra}"
         ),
 
         "finance_summary": (
@@ -375,6 +387,56 @@ def generate_storage_summary_text(
     if total_saving_sample is None:
         total_saving_sample = float(energy_saving_sample + power_charge_saving_sample)
 
+    # ============================================================
+    # 2026-04-19: Added strategy summary sentences so the report
+    # can explicitly explain whether smarter charge/discharge logic
+    # and charge power limiting are actually being used.
+    # ============================================================
+    strategy_parts: List[str] = []
+
+    priority_charge_ratio = throughput_metrics.get("priority_charge_ratio")
+    if priority_charge_ratio is not None:
+        strategy_parts.append(
+            text["storage_priority_charge"].format(
+                value=format_percentage(priority_charge_ratio, language=language)
+            )
+        )
+
+    priority_discharge_ratio = throughput_metrics.get("priority_discharge_ratio")
+    if priority_discharge_ratio is not None:
+        strategy_parts.append(
+            text["storage_priority_discharge"].format(
+                value=format_percentage(priority_discharge_ratio, language=language)
+            )
+        )
+
+    demand_limited_hours = throughput_metrics.get("charge_demand_limited_hours")
+    if demand_limited_hours is not None and demand_limited_hours > 0:
+        strategy_parts.append(
+            text["storage_demand_limit"].format(hours=int(demand_limited_hours))
+        )
+
+    charge_event_count = throughput_metrics.get("charge_event_count")
+    discharge_event_count = throughput_metrics.get("discharge_event_count")
+    if charge_event_count is not None and discharge_event_count is not None:
+        strategy_parts.append(
+            text["storage_event_count"].format(
+                charge_events=int(charge_event_count),
+                discharge_events=int(discharge_event_count),
+            )
+        )
+
+    # ============================================================
+    # 2026-04-19: Added explicit daily-planning report output.
+    # ============================================================
+    daily_planning_days = throughput_metrics.get("daily_planning_days")
+    if daily_planning_days is not None and daily_planning_days > 0:
+        strategy_parts.append(
+            text["storage_daily_plan"].format(days=int(daily_planning_days))
+        )
+
+    strategy_extra = "".join(strategy_parts) if language == "zh" else " ".join(strategy_parts).strip()
+
     return text["storage_summary"].format(
         total_charge=format_energy(total_charge, language=language),
         total_discharge=format_energy(total_discharge, language=language),
@@ -383,6 +445,7 @@ def generate_storage_summary_text(
         energy_saving=format_currency(energy_saving_sample, currency_symbol, language),
         power_charge_saving=format_currency(power_charge_saving_sample, currency_symbol, language),
         total_saving=format_currency(total_saving_sample, currency_symbol, language),
+        strategy_extra=strategy_extra,
     )
 
 

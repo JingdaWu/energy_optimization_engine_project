@@ -892,15 +892,32 @@ if run_button:
                 st.warning(T["need_storage_upload_first"])
                 st.stop()
 
+            # ============================================================
+            # 2026-04-19: Updated storage dispatch call.
+            # This version uses daily planning first, then executes:
+            # - charge priority: super_valley -> valley
+            # - discharge priority: critical_peak -> peak
+            # - charge power is capped by the original max grid power
+            #   to reduce the risk of raising demand/capacity charges
+            # - initial SOC changed from full SOC to min SOC
+            # ============================================================
+            # ============================================================
+            # 2026-04-19: Updated storage call for full-horizon offline planning.
+            # The storage optimizer now reads the full uploaded horizon and
+            # performs one global planning pass before dispatch.
+            # ============================================================
             storage_summary = summarize_storage_simulation(
                 df=tariff_df,
                 storage_capacity_kwh=storage_params["storage_capacity_kwh"],
                 storage_power_kw=storage_params["storage_power_kw"],
                 charge_efficiency=storage_params["charge_efficiency"],
                 discharge_efficiency=storage_params["discharge_efficiency"],
-                initial_soc_ratio=storage_params["max_soc_ratio"],
+                initial_soc_ratio=storage_params["min_soc_ratio"],
                 min_soc_ratio=storage_params["min_soc_ratio"],
                 max_soc_ratio=storage_params["max_soc_ratio"],
+                charge_periods=["super_valley", "valley"],
+                discharge_periods=["critical_peak", "peak"],
+                demand_limit_kw=base_max_power_kw,
             )
 
             storage_result_df = storage_summary["result_df"]
