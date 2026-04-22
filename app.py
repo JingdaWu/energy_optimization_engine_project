@@ -42,7 +42,7 @@ from visualization.plots import (
 
 
 if "language" not in st.session_state:
-    st.session_state.language = "zh"
+    st.session_state.language = "en"
 
 def toggle_language() -> None:
     st.session_state.language = "en" if st.session_state.language == "zh" else "zh"
@@ -62,7 +62,7 @@ st.set_page_config(
 # ============================================================
 
 if "language" not in st.session_state:
-    st.session_state.language = "zh"
+    st.session_state.language = "en"
 
 
 def toggle_language() -> None:
@@ -540,7 +540,7 @@ if use_storage:
         storage_power_kw = st.sidebar.number_input(
             T["storage_power"],
             min_value=1.0,
-            value=500.0,
+            value=1000.0,
             step=50.0,
         )
 
@@ -585,13 +585,13 @@ if use_storage:
         capex_total = st.sidebar.number_input(
             T["capex_total"],
             min_value=0.0,
-            value=1800000.0,
+            value=1500000.0,
             step=10000.0,
         )
         annual_om_cost = st.sidebar.number_input(
             T["annual_om_cost"],
             min_value=0.0,
-            value=60000.0,
+            value=80000.0,
             step=1000.0,
         )
         project_years = st.sidebar.number_input(
@@ -605,7 +605,7 @@ if use_storage:
             T["discount_rate"],
             min_value=0,
             max_value=30,
-            value=8,
+            value=5,
             step=1,
             format="%d%%",
         )
@@ -1240,20 +1240,30 @@ if run_button:
             unsafe_allow_html=True,
         )
 
-        insight_left, insight_right = st.columns(2)
+                # ============================================================
+        # MODIFIED 2026-04-21: 2x2 aligned insight layout
+        # Top-left: load summary
+        # Top-right: tariff summary
+        # Bottom-left: storage summary
+        # Bottom-right: finance summary
+        # ============================================================
+        insight_row1_col1, insight_row1_col2 = st.columns(2)
+        insight_row2_col1, insight_row2_col2 = st.columns(2)
 
-        with insight_left:
+        with insight_row1_col1:
             st.markdown(f"**{T['load_summary']}**")
             st.write(storage_report_dict["load_summary"])
 
+        with insight_row1_col2:
             st.markdown(f"**{T['tariff_summary']}**")
             st.write(storage_report_dict["tariff_summary"])
 
-        with insight_right:
-            if use_storage:
+        if use_storage:
+            with insight_row2_col1:
                 st.markdown(f"**{T['storage_summary']}**")
                 st.write(storage_report_dict["storage_summary"])
 
+            with insight_row2_col2:
                 st.markdown(f"**{T['finance_summary']}**")
                 st.write(storage_report_dict["finance_summary"])
 

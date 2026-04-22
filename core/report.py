@@ -45,7 +45,7 @@ REPORT_TEXT = {
 
         "finance_summary": (
             "从投资收益性角度分析，引入储能系统后首年经济性收益为 {annual_energy_saving}，"
-            "考虑到储能设备年容量衰减率 {annual_degradation_rate} 后，"
+            "考虑储能设备年容量衰减率 {annual_degradation_rate} 因素后，"
             "项目周期内平均年净收益约为 {average_annual_net_benefit}。"
             "在设备成本支出 {capex_total} 的条件下，"
             "静态回本周期为 {payback_years}，"
@@ -88,11 +88,13 @@ REPORT_TEXT = {
         # ============================================================
         # 2026-04-19: Added report texts for smarter storage strategy.
         # ============================================================
-        "storage_priority_charge": "优先充电时段（深谷/谷）承担了 {value} 的充电量。",
-        "storage_priority_discharge": "优先放电时段（尖峰/峰）承担了 {value} 的放电量。",
-        "storage_demand_limit": "为避免低电价时段充电抬高最大需量，限功率充电策略共触发 {hours} 个时段。",
-        "storage_event_count": "输入样品负荷周期内共发生 {charge_events} 个充电时段、{discharge_events} 个放电时段。",
-        "storage_daily_plan": "储能调度先按天读取负荷与电价时段后再执行，本次样品共完成 {days} 天的日内规划。",
+        
+        # ============================================================
+        # MODIFIED 2026-04-22: Keep only two investor-facing storage strategy texts.
+        # ============================================================
+        "storage_priority_charge": "本次模拟中储能系统充电主要集中在低电价时段（谷/深谷时段），低电价时段充电覆盖率为 {value}。",
+        "storage_priority_discharge": "本次模拟中储能系统放电主要集中在高电价时段（峰/尖峰时段），高电价时段放电覆盖率为 {value}。",
+        
     },
     "en": {
         "na": "N/A",
@@ -130,6 +132,15 @@ REPORT_TEXT = {
             "and the total financial benefit is {total_saving}. "
             "{strategy_extra}"
         ),
+
+        # ============================================================
+        # 2026-04-19: Added English report texts for smarter storage strategy.
+        # ============================================================
+        # ============================================================
+        # MODIFIED 2026-04-22: Keep only two investor-facing storage strategy texts.
+        # ============================================================
+        "storage_priority_charge": "In this simulation, the energy storage system charged mainly during low-tariff periods (valley / super valley), with a low-tariff charging coverage of {value}.",
+        "storage_priority_discharge": "In this simulation, the energy storage system discharged mainly during high-tariff periods (peak / critical peak), with a high-tariff discharging coverage of {value}.",
 
         "finance_summary": (
             "From an investment-return perspective, the first-year financial benefit after deploying the energy storage system is {annual_energy_saving}. "
@@ -408,31 +419,6 @@ def generate_storage_summary_text(
             text["storage_priority_discharge"].format(
                 value=format_percentage(priority_discharge_ratio, language=language)
             )
-        )
-
-    demand_limited_hours = throughput_metrics.get("charge_demand_limited_hours")
-    if demand_limited_hours is not None and demand_limited_hours > 0:
-        strategy_parts.append(
-            text["storage_demand_limit"].format(hours=int(demand_limited_hours))
-        )
-
-    charge_event_count = throughput_metrics.get("charge_event_count")
-    discharge_event_count = throughput_metrics.get("discharge_event_count")
-    if charge_event_count is not None and discharge_event_count is not None:
-        strategy_parts.append(
-            text["storage_event_count"].format(
-                charge_events=int(charge_event_count),
-                discharge_events=int(discharge_event_count),
-            )
-        )
-
-    # ============================================================
-    # 2026-04-19: Added explicit daily-planning report output.
-    # ============================================================
-    daily_planning_days = throughput_metrics.get("daily_planning_days")
-    if daily_planning_days is not None and daily_planning_days > 0:
-        strategy_parts.append(
-            text["storage_daily_plan"].format(days=int(daily_planning_days))
         )
 
     strategy_extra = "".join(strategy_parts) if language == "zh" else " ".join(strategy_parts).strip()
