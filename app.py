@@ -44,9 +44,6 @@ from visualization.plots import (
 if "language" not in st.session_state:
     st.session_state.language = "en"
 
-def toggle_language() -> None:
-    st.session_state.language = "en" if st.session_state.language == "zh" else "zh"
-
 language = st.session_state.language
 T = get_text(language)
 
@@ -60,11 +57,6 @@ st.set_page_config(
 # ============================================================
 # Language state
 # ============================================================
-
-if "language" not in st.session_state:
-    st.session_state.language = "en"
-
-
 def toggle_language() -> None:
     st.session_state.language = "en" if st.session_state.language == "zh" else "zh"
 
@@ -99,11 +91,14 @@ st.markdown(
     }
 
     [data-testid="stSidebar"] {
+        min-width: 390px;
+        max-width: 390px;
         border-right: 1px solid rgba(255,255,255,0.10);
         overflow-y: auto;
     }
 
     [data-testid="stSidebarContent"] {
+        width: 390px;
         overflow-y: auto;
         max-height: 100vh;
         padding-bottom: 2rem;
