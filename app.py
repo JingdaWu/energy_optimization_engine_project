@@ -91,14 +91,11 @@ st.markdown(
     }
 
     [data-testid="stSidebar"] {
-        min-width: 460px;
-        max-width: 460px;
         border-right: 1px solid rgba(255,255,255,0.10);
         overflow-y: auto;
     }
 
     [data-testid="stSidebarContent"] {
-        width: 460px;
         overflow-y: auto;
         max-height: 100vh;
         padding-bottom: 2rem;
