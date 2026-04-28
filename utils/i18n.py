@@ -203,7 +203,7 @@ TRANSLATIONS = {
         "section_power": "Demand and Capacity Teriff Input",
         "section_power_desc": "Select the power tariff mode and input the required tariff parameters.",
         "section_storage": "Energy Storage System Parameter Input",
-        "section_storage_desc": "Whether to deploy energy storage system and input the requiredparameters.",
+        "section_storage_desc": "Whether to deploy energy storage system and input the required parameters.",
 
         "upload_hourly_csv": "Click below to upload load data",
         "download_template": "Download Template",
