@@ -139,51 +139,51 @@ REPORT_TEXT = {
         # ============================================================
         # MODIFIED 2026-04-22: Keep only two investor-facing storage strategy texts.
         # ============================================================
-        "storage_priority_charge": "In this simulation, the energy storage system charged mainly during low-tariff periods (valley / super valley), with a low-tariff charging coverage of {value}.",
-        "storage_priority_discharge": "In this simulation, the energy storage system discharged mainly during high-tariff periods (peak / critical peak), with a high-tariff discharging coverage of {value}.",
+        "storage_priority_charge": "In this evaluation, the energy storage system was charged mainly during low-tariff periods (off-peak / super off-peak), with a low-tariff charging coverage of {value}.",
+        "storage_priority_discharge": "In this evaluation, the energy storage system discharged mainly during high-tariff periods (peak / super peak), with a high-tariff discharging coverage of {value}.",
 
         "finance_summary": (
-            "From an investment-return perspective, the first-year financial benefit after deploying the energy storage system is {annual_energy_saving}. "
+            "From an investment-return perspective, the first-year economic benefit after ESS deployment is {annual_energy_saving}. "
             "After accounting for an annual storage capacity degradation rate of {annual_degradation_rate}, "
-            "the average annual net benefit over the project life is approximately {average_annual_net_benefit}. "
-            "Given capital expenditure of {capex_total}, "
-            "the simple payback period is {payback_years}, "
+            "the average annual economic benefit over the project life is approximately {average_annual_net_benefit}. "
+            "Considering the capital expenditure of {capex_total}, "
+            "the payback period is {payback_years}, "
             "the annualized return on investment (ROI) is {simple_roi}, "
             "the net present value (NPV) is {npv}, "
             "the internal rate of return (IRR) is {irr_text}, "
             "and the levelized cost of energy (LCOE) is {lcoe_text}."
         ),
 
-        "decision_no_positive_benefit": "Under the current input conditions and energy storage configuration strategy, the project does not generate a positive average annual net benefit. Energy storage deployment is therefore not recommended at this stage.",
-        "decision_no_finite_payback": "Although energy storage deployment can deliver some positive financial benefit, the payback period exceeds the equipment service life. Priority should be given to optimizing the operating strategy and staffing arrangement.",
+        "decision_no_positive_benefit": "Under the input tariff and ESS factors' conditions, the project does not generate a positive average annual economic benefit. ESS deployment is therefore not recommended at this stage.",
+        "decision_no_finite_payback": "Although ESS deployment may deliver positive economic benefit, the payback period exceeds the equipment service life. It is recommended to optimize the operating strategy and personnel scheduling first.",
         "decision_attractive": (
-            "Energy storage deployment is expected to deliver strong financial returns. Under the current input conditions, "
+            "ESS deployment is expected to deliver splendid economic returns. Under the input tariff and ESS factors' conditions, "
             "the payback period is approximately {payback_years:.2f} years, "
             "the annualized return on investment (ROI) is {simple_roi:.2%}, "
-            "and the expected total financial benefit is {total_saving_sample}.{extra}"
+            "and the expected total economic benefit is {total_saving_sample}.{extra}"
         ),
         "decision_payback_ok_roi_mid": (
-            "The payback period for energy storage deployment is approximately {payback_years:.2f} years, "
+            "The payback period for ESS deployment is approximately {payback_years:.2f} years, "
             "but the annualized return on investment (ROI) is only moderate. "
-            "A pilot deployment is recommended first, followed by further optimization of the storage system size based on actual realized returns."
+            "An experimental deployment is recommended first, followed by further optimization of the ESS scale based on actual realized returns."
         ),
         "decision_positive_but_slow": (
-            "Energy storage deployment can generate positive returns, but the estimated payback period is {payback_years:.2f} years, "
-            "which is above the recommended threshold of {payback_threshold_years:.2f} years. "
-            "Re-evaluation is recommended after optimizing the operating strategy and staffing arrangement."
+            "ESS deployment can generate positive returns, but the estimated payback period is {payback_years:.2f} years, "
+            "which is longer than the recommended threshold of {payback_threshold_years:.2f} years. "
+            "Re-evaluation is recommended after optimizing the operating strategy and personnel scheduling."
         ),
         "decision_extra_irr": "The internal rate of return (IRR) is {irr:.2%}.",
         "decision_extra_lcoe": "The levelized cost of energy (LCOE) is {lcoe_text}.",
 
-        "finding_sample_total_cost": "Total energy cost over the input load sample period: {value}",
-        "finding_annual_total_cost": "Annualized total energy cost: {value}",
+        "finding_sample_total_cost": "Total tariff over the input Load Data Period: {value}",
+        "finding_annual_total_cost": "Annualized total tariff: {value}",
         "finding_peak_load": "Peak load: {value:.2f} kWh",
         "finding_max_power": "Maximum power demand: {value:.2f} kW",
         "finding_load_factor": "Grid load factor: {value:.2%}",
-        "finding_weighted_avg_price": "Weighted average electricity tariff: {value}",
-        "finding_storage_saving": "Financial benefit from energy storage deployment over the input load sample period: {value}",
-        "finding_average_annual_net_benefit": "Average annual net benefit: {value}",
-        "finding_payback_years": "Simple payback period: {value}",
+        "finding_weighted_avg_price": "Weighted average tariff: {value}",
+        "finding_storage_saving": "Economic benefit from ESS deployment over the input Load Data Period: {value}",
+        "finding_average_annual_net_benefit": "Average annual economic benefit: {value}",
+        "finding_payback_years": "Payback period: {value}",
         "finding_simple_roi": "Annualized return on investment (ROI): {value}",
         "finding_irr": "Internal rate of return (IRR): {value}",
         "finding_lcoe": "Levelized cost of energy (LCOE): {value}",
