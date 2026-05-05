@@ -3,11 +3,11 @@ from __future__ import annotations
 
 TRANSLATIONS = {
     "zh": {
-        "page_title": "能源调优引擎",
-        "app_name": "能源调优引擎",
+        "page_title": "EOE - 储能部署评估",
+        "app_name": "EOE - 储能部署评估",
         "app_subtitle": "面向数据中心与数字基础设施的经济性分析决策助手",
         "app_caption": "面向数据中心与数字基础设施的经济性分析决策助手",
-        "sidebar_title": "能源调优引擎",
+        "sidebar_title": "EOE - 储能部署评估",
         "sidebar_desc": "面向数据中心与数字基础设施的经济性分析决策助手",
         "language_toggle": "English",
 
@@ -183,11 +183,11 @@ TRANSLATIONS = {
     },
 
     "en": {
-        "page_title": "Energy Optimization Engine",
-        "app_name": "Energy Optimization Engine",
+        "page_title": "EOE - Energy Storage System Deployment Evaluation",
+        "app_name": "EOE - Energy Storage System Deployment Evaluation",
         "app_subtitle": "Economic analysis and decision-support agent for data center and digital infrastructure",
         "app_caption": "Economic analysis and decision-support agent for data center and digital infrastructure",
-        "sidebar_title": "Energy Optimization Engine",
+        "sidebar_title": "EOE - Energy Storage System Deployment Evaluation",
         "sidebar_desc": "Economic analysis and decision-support agent for data center and digital infrastructure",
         "language_toggle": "中文",
 

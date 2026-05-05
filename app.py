@@ -997,61 +997,51 @@ if run_button:
         st.markdown(f"<div class='panel-subtitle'>{T['kpi_desc']}</div>", unsafe_allow_html=True)
 
         if use_storage and finance_summary is not None and total_saving_sample is not None:
-            kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+            kpi1, kpi2, kpi3 = st.columns(3)  # MODIFIED 2026-05-05: show only three investment KPIs per row when ESS is deployed.
             kpi1.metric(
                 T["annual_total_cost"],
                 T["not_available"] if annual_total_cost is None else f"¥{annual_total_cost:,.2f}",
-            )
+            )  # MODIFIED 2026-05-05: keep annual electricity cost as the first ESS investment KPI.
             kpi2.metric(
                 T["average_annual_net_benefit"],
                 f"¥{finance_summary['average_annual_net_benefit']:,.2f}",
-            )
+            )  # MODIFIED 2026-05-05: keep annualized ESS benefit as the second ESS investment KPI.
             payback_value = finance_summary["simple_payback_years"]
             kpi3.metric(
                 T["payback_years"],
                 T["not_available"] if payback_value is None else f"{payback_value:.2f} ",
-            )
+            )  # MODIFIED 2026-05-05: keep payback period as the third ESS investment KPI.
+
+            kpi4, kpi5, kpi6 = st.columns(3)  # MODIFIED 2026-05-05: second ESS investment KPI row contains IRR, ROI, and LCOE only.
             irr_value = finance_summary["irr"]
+            roi_value = finance_summary["simple_roi"]
+            lcoe_value = finance_summary["lcoe"]
             kpi4.metric(
                 T["irr"],
                 T["not_available"] if irr_value is None else f"{irr_value:.2%}",
-            )
-
-            kpi5, kpi6, kpi7, kpi8 = st.columns(4)
-            roi_value = finance_summary["simple_roi"]
-            lcoe_value = finance_summary["lcoe"]
+            )  # MODIFIED 2026-05-05: move IRR to the second row and remove extra KPIs from this section.
             kpi5.metric(
-                T["storage_saving"],
-                f"¥{total_saving_sample:,.2f}",
-            )
-            kpi6.metric(
                 T["simple_roi"],
                 T["not_available"] if roi_value is None else f"{roi_value:.2%}",
-            )
-            kpi7.metric(
+            )  # MODIFIED 2026-05-05: keep ROI in the requested second-row order.
+            kpi6.metric(
                 T["lcoe"],
                 T["not_available"] if lcoe_value is None else f"¥{lcoe_value:,.4f}/kWh",
-            )
-            kpi8.metric(
-                T["weighted_avg_price"],
-                f"¥{weighted_average_price:,.4f}/kWh",
-            )
+            )  # MODIFIED 2026-05-05: keep LCOE in the requested second-row order.
         else:
-            kpi1, kpi2, kpi3, kpi4 = st.columns(4)
-            kpi1.metric(T["sample_total_cost"], f"¥{sample_total_cost:,.2f}")
+            kpi1, kpi2, kpi3 = st.columns(3)  # MODIFIED 2026-05-05: show only three investment KPIs when ESS is not deployed.
+            kpi1.metric(T["sample_total_cost"], f"¥{sample_total_cost:,.2f}")  # MODIFIED 2026-05-05: first non-ESS investment KPI.
             kpi2.metric(
                 T["annual_total_cost"],
                 T["not_available"] if annual_total_cost is None else f"¥{annual_total_cost:,.2f}",
-            )
-            kpi3.metric(T["peak_load"], f"{load_analysis['basic_metrics']['peak_load_kwh']:,.2f} kWh")
-            kpi4.metric(T["weighted_avg_price"], f"¥{weighted_average_price:,.4f}/kWh")
+            )  # MODIFIED 2026-05-05: second non-ESS investment KPI.
+            kpi3.metric(T["weighted_avg_price"], f"¥{weighted_average_price:,.4f}/kWh")  # MODIFIED 2026-05-05: third non-ESS investment KPI.
 
         st.markdown(f"<div class='panel-subtitle'>{T['oper_desc']}</div>", unsafe_allow_html=True)
-        op1, op2, op3, op4 = st.columns(4)
-        op1.metric(T["max_power"], f"{base_max_power_kw:,.2f} kW")
-        op2.metric(T["load_factor"], f"{base_load_factor:.2%}")
-        op3.metric(T["sample_total_cost"], f"¥{sample_total_cost:,.2f}")
-        op4.metric(T["peak_load"], f"{load_analysis['basic_metrics']['peak_load_kwh']:,.2f} kWh")
+        op1, op2, op3 = st.columns(3)  # MODIFIED 2026-05-05: show only three energy-consumption KPIs in one row.
+        op1.metric(T["peak_load"], f"{load_analysis['basic_metrics']['peak_load_kwh']:,.2f} kWh")  # MODIFIED 2026-05-05: first energy KPI in requested order.
+        op2.metric(T["max_power"], f"{base_max_power_kw:,.2f} kW")  # MODIFIED 2026-05-05: second energy KPI in requested order.
+        op3.metric(T["load_factor"], f"{base_load_factor:.2%}")  # MODIFIED 2026-05-05: third energy KPI in requested order.
 
         # ------------------------------------------------------------
         # Section B: Before vs After summary
@@ -1066,34 +1056,24 @@ if run_button:
                 unsafe_allow_html=True,
             )
 
-            bf1, bf2, bf3, bf4 = st.columns(4)
-            bf1.metric(T["before_storage"], f"¥{sample_total_cost:,.2f}")
-            bf2.metric(T["after_storage"], f"¥{optimized_total_cost_sample:,.2f}")
-            bf3.metric(T["storage_saving"], f"¥{total_saving_sample:,.2f}")
-            bf4.metric(
+            bf1, bf2, bf3 = st.columns(3)  # MODIFIED 2026-05-05: first before/after row reduced to three requested KPIs.
+            bf1.metric(T["before_storage"], f"¥{sample_total_cost:,.2f}")  # MODIFIED 2026-05-05: first before/after KPI.
+            bf2.metric(T["after_storage"], f"¥{optimized_total_cost_sample:,.2f}")  # MODIFIED 2026-05-05: second before/after KPI.
+            bf3.metric(
                 T["saving_ratio"],
                 T["not_available"] if saving_ratio is None else f"{saving_ratio:.2%}",
-            )
+            )  # MODIFIED 2026-05-05: move electricity-cost reduction ratio to the first row.
 
-            bf5, bf6, bf7, bf8 = st.columns(4)
-            bf5.metric(
+            bf4, bf5, bf6 = st.columns(3)  # MODIFIED 2026-05-05: second before/after row reduced to three requested savings KPIs.
+            bf4.metric(
                 T["energy_saving"],
                 f"¥{energy_saving_sample:,.2f}" if energy_saving_sample is not None else T["not_available"],
-            )
-            bf6.metric(
+            )  # MODIFIED 2026-05-05: first savings KPI in requested order.
+            bf5.metric(
                 T["power_charge_saving"],
                 f"¥{power_charge_saving_sample:,.2f}" if power_charge_saving_sample is not None else T["not_available"],
-            )
-            bf7.metric(
-                T["peak_reduction"],
-                T["not_available"] if peak_reduction_kw is None else f"{peak_reduction_kw:,.2f} kW",
-            )
-            bf8.metric(
-                T["optimized_max_power"],
-                T["not_available"]
-                if optimized_power_charge_summary is None
-                else f"{optimized_power_charge_summary['max_power_kw']:,.2f} kW",
-            )
+            )  # MODIFIED 2026-05-05: second savings KPI in requested order.
+            bf6.metric(T["storage_saving"], f"¥{total_saving_sample:,.2f}")  # MODIFIED 2026-05-05: move ESS load-period benefit to the second row.
 
         # ------------------------------------------------------------
         # Section C: Charts
